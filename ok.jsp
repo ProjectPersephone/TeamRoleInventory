@@ -8,17 +8,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>ok</title>
-  
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/themes/default/style.min.css" />
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/jstree.min.js"></script>
-  
-  
+  <title>Team Role Inventory Results</title>
 </head>
 <body>
 <% 
@@ -42,7 +32,7 @@ Enumeration en = request.getParameterNames ();
 %>
 <table border=2">
   <tr>
-   <th> param </th>
+   <th> parameter </th>
    <th> value </th>
   </tr>
 <%
@@ -90,8 +80,5 @@ while(en.hasMoreElements())
 %>        
 
 </table>
-         
-
- 
 </body>
 </html>
