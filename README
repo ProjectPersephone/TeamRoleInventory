@@ -1,0 +1,5 @@
+If make is not available:
+
+sudo apt-get update
+sudo apt-get install make
+sudo apt-get install ftp-ssl

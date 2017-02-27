@@ -4,3 +4,5 @@ cd private-cgi-bin/tomcat/TeamRoleSPI
 ls
 send index.jsp
 send ok.jsp
+send belbinjs.html
+send t.html
