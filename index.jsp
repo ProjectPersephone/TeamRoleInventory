@@ -6,9 +6,11 @@
 
 <%
    String language = "Bahasa Indonesia";
+   String lang_code = "id";
    String userhandle = "Yakushima";
    String dbname = "kicksatgs";
    
+   String itbl = "intro";
    String qtbl = "belbinq";
    String atbl = "belbina";
    
@@ -18,10 +20,30 @@
    int max = avg_wt * nchoices;   // can put all points on one choice...
    int total = max;
    
-   String title = "Belbin SPI";
+
    String q_col = "question";
    String a_col = "a";
    String c_col = "role";
+   
+   int qno;
+   int nquestions;
+
+   ResultSet irs;
+   ResultSet qrs, ars;  // resultsets for intro, questions and answers
+
+   Context ctx = new InitialContext();
+   DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/" + dbname);
+   Connection conn = ds.getConnection();
+   Statement si = conn.createStatement();
+   Statement sq = conn.createStatement();
+   Statement sa = conn.createStatement();
+   
+   irs = si.executeQuery("select * from "+itbl+" where language = '"+ lang_code +"'");
+   irs.next();
+   
+   String title = irs.getString("title");
+
+
 %>
 
 <html lang="en">
@@ -175,18 +197,13 @@
   %>
   
   <%
-   int qno;
-   int nquestions;
 
-   ResultSet qrs, ars;
+   %> 
+      <h2><%=title %></h2>
+      <p><%=irs.getString("intro") %></p>
+   <%
 
-   Context ctx = new InitialContext();
-   DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/" + dbname);
-   Connection conn = ds.getConnection();
-   Statement sq = conn.createStatement();
-   Statement sa = conn.createStatement();
-
-   qrs = sq.executeQuery("select * from "+qtbl+" where language = '"+language+"'");
+   qrs = sq.executeQuery("select * from "+qtbl+" where language = '"+ language  +"'");
 
    nquestions = getRowCount(qrs);
    
