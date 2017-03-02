@@ -1,4 +1,4 @@
-S=index.jsp ok.jsp META-INF WEB-INF belbinjs.html t.html
+S=index.jsp ok.jsp META-INF WEB-INF belbinjs.html belbinjs.jsp t.html
 
 test:
 	cp -R $S $(TOMCAT_HOME)/webapps/TeamRoleSPI

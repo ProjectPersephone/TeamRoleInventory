@@ -5,4 +5,5 @@ ls
 send index.jsp
 send ok.jsp
 send belbinjs.html
+send belbinjs.jsp
 send t.html
