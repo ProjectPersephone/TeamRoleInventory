@@ -1,5 +1,6 @@
 open ftpcloud.metawerx.net
 kicksatgs
+binary
 cd private-cgi-bin/tomcat/TeamRoleSPI
 ls
 send index.jsp

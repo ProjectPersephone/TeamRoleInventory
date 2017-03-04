@@ -1,7 +1,8 @@
+<%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <HTML>
 	
 <head>
-	<meta charset="utf-8" /> 
+<title>Collaborative Skills Inventory</title>
 </head>
 
 <BODY aLink=#ff8000 bgColor=white link=#0000a0 text=#000000 vLink=#c00000>
