@@ -60,9 +60,9 @@
      
      function set_readout (qno, c, v) {
           	var pref = c + "_" + qno;
-            var w   = "#"+pref+"weight"; // slider
+            var w   = "#"+pref+"_weight"; // slider
             // w == "#"+$(w)[0].parentNode.id ... should assert this
-            var readout = "#"+pref+"amount";
+            var readout = "#"+pref+"_amount";
                             
             $( readout ).val (v);
      };
@@ -70,8 +70,8 @@
      // only if the slider moves
      function update_from_slider (ui, qno, c) {
      		var pref = c + "_" + qno;
-            var w   = "#"+pref+"weight";     // slider
-            var readout = "#"+pref+"amount";
+            var w   = "#"+pref+"_weight";     // slider
+            var readout = "#"+pref+"_amount";
             var slider_v = ui.value; // $(w).slider ("value");
             var old_wt = $(readout).val();
             var diff = old_wt - slider_v;
@@ -92,7 +92,7 @@
             	$( sel ).each (function (i) {
                     if (this.id != $(w)[0].parentNode.id) {
                          others += (" " + this.id);
-                         sum_of_others += parseFloat($("#"+this.id+"amount").val());
+                         sum_of_others += parseFloat($("#"+this.id+"_amount").val());
                     }
                  }
                 );
@@ -111,8 +111,8 @@
                              
                 $( sel ).each (function (i) {
                          if (this.id != $(w)[0].parentNode.id) {
-                             var other_readout = "#" + this.id + "amount";   // numeric readout
-                             var other_slider  = "#" + this.id + "weight";   // slider ID
+                             var other_readout = "#" + this.id + "_amount";   // numeric readout
+                             var other_slider  = "#" + this.id + "_weight";   // slider ID
                              var cur_wt = parseFloat($(other_slider).slider("value"));
                              
                              var new_other_slider_v = a * cur_wt; // parseFloat($(other_slider).slider("value")) + diff;
@@ -130,7 +130,7 @@
      
      function mk_slider (qno, c) {
      		var pref = c + "_" + qno;
-            var w   = "#"+pref+"weight";
+            var w   = "#"+pref+"_weight";
             var max = <%=max%>;
             var v = <%=avg_wt%>;
             
@@ -271,9 +271,9 @@
            String c_q = c + '_' + qno;
          %> 
            <li class="ui-state-default" id ="<%= c_q %>" name="<%= c_q %>">
-               <label for="<%= c_q + "amount" %>" >Weight</label>
-               <input type="number" id="<%= c_q+"amount" %>" name="<%= c_q+"amount" %>" readonly size="2" />
-               <div id="<%= c_q + "weight" %>" style="float:left; width:10%; margin:5px;"></div>               
+               <label for="<%= c_q + "_amount" %>" >Weight</label>
+               <input type="number" id="<%= c_q+"_amount" %>" name="<%= c_q+"_amount" %>" readonly size="2" />
+               <div id="<%= c_q + "_weight" %>" style="float:left; width:10%; margin:5px;"></div>               
                <strong><%= choiceclass[qno-1][i] %></strong>: <%= a[qno-1][i] %>.
                <%= arrow_or_not %>
            </li>
