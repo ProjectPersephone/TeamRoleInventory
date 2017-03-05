@@ -5,7 +5,6 @@
 <%@ page import="java.sql.*" %>
 
 <%
-   String language = "Bahasa Indonesia";
    String lang_code = "id";
    String userhandle = "Yakushima";
    String dbname = "kicksatgs";
@@ -38,7 +37,7 @@
    Statement sq = conn.createStatement();
    Statement sa = conn.createStatement();
    
-   irs = si.executeQuery("select * from "+itbl+" where language = '"+ lang_code +"'");
+   irs = si.executeQuery("select * from "+itbl+" where lang_code = '"+ lang_code +"'");
    irs.next();
    
    String title = irs.getString("title");
@@ -203,7 +202,7 @@
       <p><%=irs.getString("intro") %></p>
    <%
 
-   qrs = sq.executeQuery("select * from "+qtbl+" where language = '"+ language  +"'");
+   qrs = sq.executeQuery("select * from "+qtbl+" where lang_code = '"+ lang_code  +"'");
 
    nquestions = getRowCount(qrs);
    
@@ -212,7 +211,7 @@
   
    for (qno = 1; qno <= nquestions; ++qno) { 
    
-      ars = sa.executeQuery("select * from "+atbl+" where language = '"+language+"' and qno = "+qno);
+      ars = sa.executeQuery("select * from "+atbl+" where lang_code = '"+lang_code+"' and qno = "+qno);
       
       for (int i = 0; ars.next(); ++i) {
          a[qno-1][i] = ars.getString (a_col);
@@ -253,7 +252,7 @@
 <form action="ok.jsp" method="get" class="my-form">
 
 <input type="hidden" id="userhandle" name="userhandle" value="<%=userhandle%>" />
-<input type="hidden" id="language" name="language" value="<%=language%>" />
+<input type="hidden" id="lang_code" name="lang_code" value="<%=lang_code%>" />
 
 <%
    for (qno = 1; qno <= nquestions; ++qno) {

@@ -56,10 +56,10 @@ while(en.hasMoreElements())
                </tr>
     <%        
             } else
-            if (param.equals("language")) {
+            if (param.equals("lang_code")) {
      %>
                <tr>
-                  <td>language</td>
+                  <td>lang_code</td>
                   <td><%= value %></td>
                </tr>
     <%                   } else {// more robust to do a regex on role+qno
