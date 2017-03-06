@@ -1,12 +1,20 @@
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <HTML>
+<%
+   String lang_code = "id";
+   String userhandle = "Yakushima";
+   String dbname = "kicksatgs";
+%>
 	
 <head>
 <title>Collaborative Skills Inventory</title>
 </head>
 
 <BODY aLink=#ff8000 bgColor=white link=#0000a0 text=#000000 vLink=#c00000>
-<FORM action=t.html>
+<FORM action=ok.jsp>
+
+<input type="hidden" id="userhandle" name="userhandle" value="<%=userhandle%>" />
+<input type="hidden" id="lang_code" name="lang_code" value="<%=lang_code%>" />
 
 <SCRIPT LANGUAGE="Javascript">
 
@@ -273,25 +281,23 @@ nqs = 7;
 function writeSPI(H,E,Q,A)
 {
  document.write (hH1 (hCenter (H)));
- document.write (hH1 (hCenter (Hj)));
  document.write (hPara(E));
- document.write (hPara(Ej));
  for (i = 1; i <= nqs; ++i)
    {
    var s = hRow(hHdr("Type") + hHdr("Weight") + hHdr("Answer"));
    for (r in R)
 	{
-	var v = R[r]+i;
+	var v = R[r]+"_"+i+"_amount";
 	s += hRow(hData(v)
 	     + hData(hInput(v, 0, "size=2"))
-	     + hData(A[i][R[r]] + "<br>" + Aj[i][R[r]]));
+	     + hData(A[i][R[r]]));
 	}
-   document.write (hPara(hStrong(Q[i] + "<br>"+Qj[i])) + hTable (s, "border=1"));
+   document.write (hPara(hStrong(Q[i])) + hTable (s, "border=1"));
    }
 }
 
-writeSPI(He,Ee,Qe,Ae);
-
+// writeSPI(He,Ee,Qe,Ae);
+ writeSPI(Hj,Ej,Qj,Aj);
 </SCRIPT>
 
 <P>
