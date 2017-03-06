@@ -37,6 +37,8 @@ Enumeration en = request.getParameterNames ();
   </tr>
 <%
 
+HashMap<String, Float> hmap = new HashMap<String, Float>();
+
 while(en.hasMoreElements())
         {
             Object objOri=en.nextElement();
@@ -66,6 +68,13 @@ while(en.hasMoreElements())
                String role = role_qno[0];
                int qno = Integer.parseInt(role_qno[1]);
                float w = Float.parseFloat(value);
+
+               Float x = hmap.get(role);
+               if (x == null) {
+                   hmap.put(role, w);
+               } else {
+                   hmap.put (role, x.floatValue() + w);
+               }
     %>
                <tr>
                   <td><%= role %>: <%= qno %></td>
@@ -74,6 +83,29 @@ while(en.hasMoreElements())
     <%
             }
         }
+        
+ %>
+ 
+</table>
+
+<table border=2">
+  <tr>
+   <th> Role </th>
+   <th> Weight </th>
+  </tr>
+  
+<%
+        
+        for (Map.Entry<String, Float> entry : hmap.entrySet()) {
+    		String role = entry.getKey();
+    		Float weight = entry.getValue();
+            
+            %>
+            <tr><td><%= role %></td><td><%= weight %></td></tr>
+            <%
+
+		}
+
    conn.close();
 %>        
 
