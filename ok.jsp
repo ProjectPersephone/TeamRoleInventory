@@ -11,17 +11,6 @@
   <title>Team Role Inventory Results</title>
 </head>
 <body>
-<% 
-
-   // Get DataSource
-   Context ctx = new InitialContext();
-   DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/kicksatgs");
-   // Get Connection and Statement
-   Connection conn = ds.getConnection();
-   Statement s = conn.createStatement();
-   String query = "select * from belbinanswers";
-   ResultSet rs = s.executeQuery(query);
-%>
 
 <p>
 
@@ -30,14 +19,19 @@
 Enumeration en = request.getParameterNames ();
 
 %>
+
+<!--
 <table border=2">
   <tr>
    <th> parameter </th>
    <th> value </th>
   </tr>
+-->
+  
 <%
 
 HashMap<String, Float> hmap = new HashMap<String, Float>();
+String lang_code;
 
 while(en.hasMoreElements())
         {
@@ -49,18 +43,23 @@ while(en.hasMoreElements())
             } else
             if (param.equals("userhandle")) {
     %>
+<!--
                <tr>
                   <td>userhandle</td>
                   <td><%= value %></td>
                </tr>
+-->
     <%        
             } else
             if (param.equals("lang_code")) {
+               lang_code = value;
      %>
+<!--
                <tr>
                   <td>lang_code</td>
                   <td><%= value %></td>
                </tr>
+-->
     <%                   } else {// more robust to do a regex on role+qno
    
                String role_qno[] = param.split ("_");
@@ -76,36 +75,62 @@ while(en.hasMoreElements())
                    hmap.put (role, x.floatValue() + w);
                }
     %>
+<!--
                <tr>
                   <td><%= role %>: <%= qno %></td>
                   <td><%= w %></td>
                </tr>
+-->
     <%
             }
         }
         
  %>
- 
+
+<!-- 
 </table>
+-->
+
+<% 
+
+   // Get DataSource
+   Context ctx = new InitialContext();
+   DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/kicksatgs");
+   // Get Connection and Statement
+   Connection conn = ds.getConnection();
+   Statement s = conn.createStatement();
+   String query = "select * from belbinroles";
+   ResultSet rs = s.executeQuery(query);
+   
+   %>
 
 <table border=2">
   <tr>
-   <th> Role </th>
    <th> Weight </th>
+   <th> Role </th>
+   <th> Description </th>
   </tr>
   
 <%
-        
-        for (Map.Entry<String, Float> entry : hmap.entrySet()) {
-    		String role = entry.getKey();
-    		Float weight = entry.getValue();
-            
-            %>
-            <tr><td><%= role %></td><td><%= weight %></td></tr>
-            <%
+    while (rs.next()) {
+      String rr = rs.getString("role");
+      String dd = rs.getString("description");
+      String nn = rs.getString("name");
+      
+      Float ww = hmap.get(rr);
+%>
+      <tr>
+        <td><%= ww %></td>
+        <td><%= nn %></td>
+        <td><%= dd %></td>
+      </tr>
+<%
+    }
+%>
 
-		}
+</table>
 
+<%
    conn.close();
 %>        
 
