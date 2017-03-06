@@ -42,9 +42,6 @@ while(en.hasMoreElements())
             Object objOri=en.nextElement();
             String param=(String)objOri;
             String value=request.getParameter(param);
-            String role_qno[];
-            String role;
-            String qno;
             
             if (param.equals("Submit")) {
             } else
@@ -64,14 +61,15 @@ while(en.hasMoreElements())
                </tr>
     <%                   } else {// more robust to do a regex on role+qno
    
-               role_qno = param.split ("_");
+               String role_qno[] = param.split ("_");
             
-               role = role_qno[0];
-               qno = role_qno[1];
+               String role = role_qno[0];
+               int qno = Integer.parseInt(role_qno[1];
+               float w = Float.parseFloat(value);
     %>
                <tr>
                   <td><%= role %>: <%= qno %></td>
-                  <td><%= value %></td>
+                  <td><%= w %></td>
                </tr>
     <%
             }
