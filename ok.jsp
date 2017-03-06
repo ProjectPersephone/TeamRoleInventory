@@ -64,7 +64,7 @@ while(en.hasMoreElements())
                String role_qno[] = param.split ("_");
             
                String role = role_qno[0];
-               int qno = Integer.parseInt(role_qno[1];
+               int qno = Integer.parseInt(role_qno[1]);
                float w = Float.parseFloat(value);
     %>
                <tr>
