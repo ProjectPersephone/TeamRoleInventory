@@ -7,7 +7,6 @@
 
 <BODY aLink=#ff8000 bgColor=white link=#0000a0 text=#000000 vLink=#c00000>
 <FORM action=t.html>
-<center><IMG SRC="leap1.bmp"></center>
 
 <SCRIPT LANGUAGE="Javascript">
 
