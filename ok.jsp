@@ -102,7 +102,48 @@ while(en.hasMoreElements())
    String query = "select * from belbinroles";
    ResultSet rs = s.executeQuery(query);
    
+   TreeMap<Float,Set<String>> sm = new TreeMap<Float,Set<String>>(Collections.reverseOrder());
+   
+   Iterator it = hmap.entrySet().iterator();
+     while (it.hasNext()) {
+        Map.Entry pair = (Map.Entry)it.next();
+        Float weight = (Float) pair.getValue();
+        String role = (String) pair.getKey();
+        
+        Set<String> roles_of_this_weight = sm.get (weight);
+        if (roles_of_this_weight == null)
+           roles_of_this_weight = new HashSet<String>();
+        roles_of_this_weight.add (role);
+        sm.put (weight, roles_of_this_weight);
+        // it.remove(); // avoids a ConcurrentModificationException
+     }
+     
    %>
+
+<table border=2">
+  <tr>
+   <th> Weight </th>
+   <th> Role </th>
+  </tr>
+<%       
+   Iterator ot = sm.entrySet().iterator();
+     while (ot.hasNext()) {
+        Map.Entry pair = (Map.Entry) ot.next();
+        Float ww = (Float) pair.getKey();
+        Set<String> roles = (Set<String>) pair.getValue();
+        for (String rr : roles) { 
+%>
+            <tr>
+              <td><%= ww %></td>
+              <td><%= rr %></td>
+            </tr>
+<%        
+        }
+        // ot.remove();
+      }
+%>
+
+</table>
 
 <table border=2">
   <tr>
@@ -114,10 +155,10 @@ while(en.hasMoreElements())
 <%
     while (rs.next()) {
       String rr = rs.getString("role");
-      String dd = rs.getString("description");
-      String nn = rs.getString("name");
-      
       Float ww = hmap.get(rr);
+      
+      String nn = rs.getString("name");
+      String dd = rs.getString("description");
 %>
       <tr>
         <td><%= ww %></td>

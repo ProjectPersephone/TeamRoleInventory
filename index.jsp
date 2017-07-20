@@ -151,28 +151,6 @@
 
   </script>
   
-<style>
-
-.slider {
-    background: #333;
-    height: 40px;
-}
-
-.slider .ui-state-default {
-    background: none;
-}
-
-.ui-slider .ui-slider-handle {
-    cursor: default;
-    height: 15px;
-    width: 0px;
-    padding-left: 1px;
-    outline: none;
-    border: 1px solid rgb(207, 207, 207);
-    background: #090;
-    border-image: initial;
-}
-</style>
 
   <%!
   public int getRowCount(ResultSet resultSet) {
@@ -271,7 +249,7 @@
          %> 
            <li class="ui-state-default" id ="<%= c_q %>" name="<%= c_q %>">
                <label for="<%= c_q + "_amount" %>" >Weight</label>
-               <input type="number" id="<%= c_q+"_amount" %>" name="<%= c_q+"_amount" %>" readonly size="2" />
+               <input type="text" id="<%= c_q+"_amount" %>" name="<%= c_q+"_amount" %>" readonly size="2" width="40" />
                <div id="<%= c_q + "_weight" %>" style="float:left; width:10%; margin:5px;"></div>               
                <strong><%= choiceclass[qno-1][i] %></strong>: <%= a[qno-1][i] %>.
                <%= arrow_or_not %>
